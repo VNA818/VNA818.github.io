@@ -87,7 +87,7 @@ function jsondisp2(jsonfile){
     sq=sq.replace(' ','%20');
     var  jsonfile ='https://kitsu.io/api/edge/anime?filter[text]='+sq;
     //'https://kitsu.io/api/edge/anime?filter[text]='+sq;
-    //'https://localhost/anisite/prac.json';
+    //'https://vna818.github.io/anisearch/Resources/code/prac.json';
     jsondisp(jsonfile);
  
  
@@ -98,7 +98,7 @@ $("#randbutton").click(function() {
     var sq= String(Math.floor(Math.random() * 11000));
     var jsonfile= 'https://kitsu.io/api/edge/anime/'+sq;
     //'https://kitsu.io/api/edge/anime?filter[text]='+sq;
-    //'https://localhost/anisite/prac.json';
+    //'https://vna818.github.io/anisearch/Resources/code/prac.json';
     
     jsondisp2(jsonfile);
     
