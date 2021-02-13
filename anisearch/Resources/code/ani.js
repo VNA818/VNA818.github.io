@@ -1,5 +1,11 @@
 $(document).ready(function() {
- 
+
+const url = window.location; 
+const urlObject = new URL(url);
+const searchq = urlObject.searchParams.get('searchq');
+
+
+
 function jsondisp(jsonfile){  
  $.getJSON( jsonfile, function( data1 ) {
   
@@ -104,6 +110,11 @@ $("#randbutton").click(function() {
     
  
   });
+if(searchq!=null){
+  $("#search").val(searchq);
+  $(".subb").click();
+}
+
 $(".mini-image").click(function() {
     alert("Made by VNA in January 2021");
   });
