@@ -13,6 +13,10 @@ function jsondisp(jsonfile){
     var il= this.attributes.posterImage.original;
     var arating =this.attributes.averageRating;
     var ratecolor='null';
+    var name=this.attributes.titles.en;
+    if (name=='undefined'){
+      name=this.attributes.titles.en_jp;
+    }
   
     if (parseFloat(arating)>=75){
       ratecolor='good';
@@ -101,6 +105,7 @@ function jsondisp2(jsonfile){
 
 $("#randbutton").click(function() {
     $( '#loading' ).show();
+    $("#search").val("");
     var sq= String(Math.floor(Math.random() * 11000));
     var jsonfile= 'https://kitsu.io/api/edge/anime/'+sq;
     //'https://kitsu.io/api/edge/anime?filter[text]='+sq;
