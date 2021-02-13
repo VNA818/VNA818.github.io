@@ -110,14 +110,16 @@ $("#randbutton").click(function() {
     
  
   });
-if(searchq!=null){
-  $("#search").val(searchq);
-  $(".subb").click();
-}
+
 
 $(".mini-image").click(function() {
     alert("Made by VNA in January 2021");
   });
+
+if(searchq!=null){
+  $("#search").val(searchq);
+  $(".subb").click();
+}
     });
 
 
