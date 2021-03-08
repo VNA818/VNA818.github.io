@@ -34,7 +34,7 @@ function jsondisp(jsonfile){
     }else{
     arating= parseFloat(arating).toFixed(1)+'%';
   }
-    var des = '<header class="anititle">'+this.attributes.titles.en+'</header><br><header class="anidate">'+this.attributes.startDate+'</header><br><p class="anidisc">'+this.attributes.synopsis+'</p><div class="rating" id="'+ratecolor+'">'+arating+'</div>';
+    var des = '<header class="anititle">'+name+'</header><br><header class="anidate">'+this.attributes.startDate+'</header><br><p class="anidisc">'+this.attributes.synopsis+'</p><div class="rating" id="'+ratecolor+'">'+arating+'</div>';
 
     
     in1=document.getElementsByClassName("imageinfo");
