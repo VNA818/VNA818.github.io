@@ -1,0 +1,52 @@
+
+#map {
+  height: 75%;
+}
+#mappick {
+  height: 25%;
+  width:75%;
+  float:right;
+  display:inline;
+}
+#msg{
+	border-style: solid;
+	font-weight: bold;
+	font-size: 1vw;
+	border:none; 
+	
+	position: absolute;
+	margin-top:5%;
+
+	float:left;
+	margin-left: 0px;
+}
+#cover{
+	width:100%;
+	height:5%;
+	bottom:25%;
+	position: absolute;
+	background-color:white;
+	z-index: 9998;
+}
+.check2{
+display:inline;
+float:left;
+
+	border-radius:4px;
+	border-style: solid;
+	font-weight: bold;
+	font-size: 1vw; 
+	color:white;
+	border-color:#689AFB;
+	background-color: #689AFB;
+	height:5vh;
+	width:5vw;
+	outline:none;
+}
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: segoe ui;
+}
