@@ -60,20 +60,19 @@ function initMap2(clat,clng,alat,alng) {
 
 function randloc(){
   var jsonfile2 = "https://vna818.github.io/location_guessr/Resources/data_ctemp.JSON";
-  var loc_info;
-  var value= $.ajax({ 
+//  var jsonfile2 = "http://localhost/geotest/data_ctemp.JSON";
+  var valuel= $.ajax({ 
       url: jsonfile2, 
       async: false
    }).responseText;
-   loc_info=JSON.parse(value);
+   var loc_info=JSON.parse(valuel);
+ 
 
-  var choice = string(Math.floor(Math.random() * 1500)); 
+  var choice = String(Math.floor(Math.random() * 1500)); 
   
-  //alert("lat:"+lat+"long:"+long);
-  loc_info=loc_info.locations.choice;
-  let location = [String(loc_info.lat),String(loc.info.long)];
-
-  
+  loc_info=loc_info.locations[choice];
+  let location = [loc_info.lat,loc_info.long];
+  alert(choice);
   alert(location);
   return location;
 
