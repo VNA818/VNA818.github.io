@@ -72,8 +72,6 @@ function randloc(){
   
   loc_info=loc_info.locations[choice];
   let location = [loc_info.lat,loc_info.long];
-  alert(choice);
-  alert(location);
   return location;
 
 
