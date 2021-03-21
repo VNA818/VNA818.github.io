@@ -59,30 +59,28 @@ function initMap2(clat,clng,alat,alng) {
 
 
 function randloc(){
-  var res = "0";
-  var lat = (Math.random()*90) ; //
-  lat *= Math.round(Math.random()) ? 1 : -1;
-  var long = (Math.random()*180) ; // t
-  long *= Math.round(Math.random()) ? 1 : -1;
-  while (long>-80&&long<-124){
-    long = (Math.random()*180) ; // this will get a number between 1 and 99;
-  long *= Math.round(Math.random()) ? 1 : -1;
-  }
-  while (lat<25&&lat>48){
-    lat = (Math.random()*180) ; // this will get a number between 1 and 99;
-  lat *= Math.round(Math.random()) ? 1 : -1;
-  }
+  var jsonfile2 = "https://vna818.github.io/location_guessr/Resources/data_ctemp.JSON";
+  var loc_info;
+  var value= $.ajax({ 
+      url: jsonfile2, 
+      async: false
+   }).responseText;
+   loc_info=JSON.parse(value);
+
+  var choice = string(Math.floor(Math.random() * 1500)); 
+  
   //alert("lat:"+lat+"long:"+long);
-  let location = [String(lat),String(long)];
+  loc_info=loc_info.locations.choice;
+  let location = [String(loc_info.lat),String(loc.info.long)];
 
   
-  //return(location);
+  alert(location);
   return location;
 
 
 }
 function loc_check(location){
-  
+  /*
 var jsonfile = "https://maps.googleapis.com/maps/api/streetview/metadata?size=600x300&location="+location[0]+","+location[1]+"&key=AIzaSyBLIjV_yPuibS6by1Lt-fIADrX1NVJHBUA";
  //alert(jsonfile)
  var dstatus;
@@ -93,6 +91,7 @@ var jsonfile = "https://maps.googleapis.com/maps/api/streetview/metadata?size=60
    dstatus=JSON.parse(value);
    //alert(dstatus.status);
   return String(dstatus.status);
+  */
  }
   
 
@@ -124,11 +123,11 @@ initPano(59.33622, 18.05637);
 
 
 var loc;
-var loc1;
-while (loc1!="OK"){
+
+
   loc=randloc();
-  loc1=loc_check(loc);
-}
+
+
 alert("Location found!");
 
 
