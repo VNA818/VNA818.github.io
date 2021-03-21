@@ -68,7 +68,7 @@ function randloc(){
    var loc_info=JSON.parse(valuel);
  
 
-  var choice = String(Math.floor(Math.random() * 1500)); 
+  var choice = String(Math.floor(Math.random() * parseInt(loc_info.locations.size.csize))); 
   
   loc_info=loc_info.locations[choice];
   let location = [loc_info.lat,loc_info.long];
