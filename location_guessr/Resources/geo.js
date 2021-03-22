@@ -88,10 +88,10 @@ loc=randloc();
 alert("Location found!");
 initPano(parseFloat(loc[0]), parseFloat(loc[1]));
 initMap();
-$(".check").click(function() {
-    alert(loc_select.lng);
-  });
 $(".check2").click(function() {
     initMap2(loc_select.lat,loc_select.lng,parseFloat(loc[0]), parseFloat(loc[1]));
+  });
+$(".reload").click(function() {
+    location.reload();
   });
 });
