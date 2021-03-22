@@ -13,12 +13,7 @@
 	font-weight: bold;
 	font-size: 1vw;
 	border:none; 
-	
-	position: absolute;
-	margin-top:5%;
-
-	float:left;
-	margin-left: 0px;
+	margin-left: 10vw;
 }
 #cover{
 	width:100%;
@@ -42,6 +37,7 @@ float:left;
 	height:5vh;
 	width:5vw;
 	outline:none;
+	margin-left: 2vw;
 }
 html,
 body {

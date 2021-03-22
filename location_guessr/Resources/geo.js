@@ -45,7 +45,6 @@ function initMap2(clat,clng,alat,alng) {
   // Locations of landmarks
   const dakota = {lat: alat, lng: alng};
   const frick = {lat: clat, lng: clng};
-
   var line = new google.maps.Polyline({path: [dakota, frick], map: map});
   // The markers for The Dakota and The Frick Collection
   var mk1 = new google.maps.Marker({position: dakota, map: map});
@@ -84,8 +83,6 @@ function initPano(ilat,ilon) {
 }
 var status=7;
 initPano(59.33622, 18.05637);
-//var check=loc_check(loc);
-//alert(randloc());
 var loc;
 loc=randloc();
 alert("Location found!");
