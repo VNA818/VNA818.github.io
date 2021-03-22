@@ -1,20 +1,19 @@
 $(document).ready(function() {
 var loc_select;
 function haversine_distance(mk1, mk2) {
-      var R = 3958.8; // Radius of the Earth in miles
-      var rlat1 = mk1.position.lat() * (Math.PI/180); // Convert degrees to radians
-      var rlat2 = mk2.position.lat() * (Math.PI/180); // Convert degrees to radians
-      var difflat = rlat2-rlat1; // Radian difference (latitudes)
-      var difflon = (mk2.position.lng()-mk1.position.lng()) * (Math.PI/180); // Radian difference (longitudes)
-
-      var d = 2 * R * Math.asin(Math.sqrt(Math.sin(difflat/2)*Math.sin(difflat/2)+Math.cos(rlat1)*Math.cos(rlat2)*Math.sin(difflon/2)*Math.sin(difflon/2)));
-      return d;
-      }
+  var R = 3958.8; // Radius of the Earth in miles
+  var rlat1 = mk1.position.lat() * (Math.PI/180); // Convert degrees to radians
+  var rlat2 = mk2.position.lat() * (Math.PI/180); // Convert degrees to radians
+  var difflat = rlat2-rlat1; // Radian difference (latitudes)
+  var difflon = (mk2.position.lng()-mk1.position.lng()) * (Math.PI/180); // Radian difference (longitudes)
+  var d = 2 * R * Math.asin(Math.sqrt(Math.sin(difflat/2)*Math.sin(difflat/2)+Math.cos(rlat1)*Math.cos(rlat2)*Math.sin(difflon/2)*Math.sin(difflon/2)));
+  return d;
+}
 function initMap() {
   const myLatlng = { lat: -25.363, lng: 131.044 };
   const mappick = new google.maps.Map(document.getElementById("mappick"), {
-    zoom: 1,
-    center: myLatlng,
+  zoom: 1,
+  center: myLatlng,
   });
   // Create the initial InfoWindow.
   let infoWindow = new google.maps.InfoWindow({
@@ -55,75 +54,47 @@ function initMap2(clat,clng,alat,alng) {
   document.getElementById('msg').innerHTML = "Your guess was: " + distance.toFixed(2) + " miles off!";
   alert("Your guess was: " + distance.toFixed(2) + " miles off!");
 }
-  
-
-
-
 function randloc(){
   var jsonfile2 = "https://vna818.github.io/location_guessr/Resources/data_ctemp.JSON";
-//  var jsonfile2 = "http://localhost/geotest/data_ctemp.JSON";
+  //  var jsonfile2 = "http://localhost/geotest/data_ctemp.JSON";
   var valuel= $.ajax({ 
       url: jsonfile2, 
       async: false
-   }).responseText;
-   var loc_info=JSON.parse(valuel);
- 
-
+  }).responseText;
+  var loc_info=JSON.parse(valuel);
   var choice = String(Math.floor(Math.random() * parseInt(loc_info.locations.size.csize))); 
-  
   loc_info=loc_info.locations[choice];
   let location = [loc_info.lat,loc_info.long];
   return location;
-
-
 }
-
-
-
-  function initPano(ilat,ilon) {
+function initPano(ilat,ilon) {
   // Note: constructed panorama objects have visible: true
   // set by default.
   const panorama = new google.maps.StreetViewPanorama(
     document.getElementById("map"),
-    
     {
       position: { lat: ilat, lng: ilon },
       addressControl: false,
       linksControl: false,
-
       showRoadLabels: false,
       panControl: false,
       enableCloseButton: false,
     }
-
   );
 }
-
-  var status=7;
+var status=7;
 initPano(59.33622, 18.05637);
 //var check=loc_check(loc);
 //alert(randloc());
-
-
 var loc;
-
-
-  loc=randloc();
-
-
+loc=randloc();
 alert("Location found!");
-
-
 initPano(parseFloat(loc[0]), parseFloat(loc[1]));
-
-
 initMap();
 $(".check").click(function() {
     alert(loc_select.lng);
   });
-
 $(".check2").click(function() {
     initMap2(loc_select.lat,loc_select.lng,parseFloat(loc[0]), parseFloat(loc[1]));
-
   });
 });
