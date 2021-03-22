@@ -35,7 +35,8 @@
 	color:white;
 	border-color:#689AFB;
 	background-color: #689AFB;
-	height:5vh;
+	height:4vh;
+	margin-top:0.5vh;
 	width:5vw;
 	outline:none;
 	margin-left: 2vw;
@@ -51,7 +52,8 @@
 	color:white;
 	border-color:#689AFB;
 	background-color: #689AFB;
-	height:5vh;
+	height:4vh;
+	margin-top:0.5vh;
 	width:10vw;
 	outline:none;
 	margin-left: 2vw;
