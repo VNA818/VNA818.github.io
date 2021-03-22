@@ -1,3 +1,4 @@
+$(document).ready(function() {
 var loc_select;
 function haversine_distance(mk1, mk2) {
       var R = 3958.8; // Radius of the Earth in miles
@@ -76,23 +77,8 @@ function randloc(){
 
 
 }
-function loc_check(location){
-  /*
-var jsonfile = "https://maps.googleapis.com/maps/api/streetview/metadata?size=600x300&location="+location[0]+","+location[1]+"&key=AIzaSyBLIjV_yPuibS6by1Lt-fIADrX1NVJHBUA";
- //alert(jsonfile)
- var dstatus;
-  var value= $.ajax({ 
-      url: jsonfile, 
-      async: false
-   }).responseText;
-   dstatus=JSON.parse(value);
-   //alert(dstatus.status);
-  return String(dstatus.status);
-  */
- }
-  
 
-$(document).ready(function() {
+
 
   function initPano(ilat,ilon) {
   // Note: constructed panorama objects have visible: true
