@@ -39,6 +39,23 @@
 	outline:none;
 	margin-left: 2vw;
 }
+#check3{
+    display:inline;
+    float:left;
+ 
+	border-radius:4px;
+	border-style: solid;
+	font-weight: bold;
+	font-size: 1vw; 
+	color:white;
+	border-color:#689AFB;
+	background-color: #689AFB;
+	height:5vh;
+	width:10vw;
+	outline:none;
+	margin-left: 2vw;
+	margin-right:2vw;
+}
 html,
 body {
   height: 100%;
