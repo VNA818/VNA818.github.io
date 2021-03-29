@@ -14,6 +14,7 @@ function initMap() {
   const mappick = new google.maps.Map(document.getElementById("mappick"), {
   zoom: 1,
   center: myLatlng,
+  streetViewControl: false,
   });
   // Create the initial InfoWindow.
   let infoWindow = new google.maps.InfoWindow({
