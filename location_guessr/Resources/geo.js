@@ -77,6 +77,7 @@ function initPano(ilat,ilon) {
       addressControl: false,
       linksControl: false,
       showRoadLabels: false,
+      fullscreenControl: false,
       panControl: false,
       enableCloseButton: false,
     }
