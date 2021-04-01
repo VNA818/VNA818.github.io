@@ -50,11 +50,14 @@ function initMap2(clat,clng,alat,alng) {
   // The markers for The Dakota and The Frick Collection
   var mk1 = new google.maps.Marker({position: dakota, map: map});
   var mk2 = new google.maps.Marker({position: frick, map: map});
+  mk1.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png')
+  /*
   let infoWindow = new google.maps.InfoWindow({
     content: "Street view location!",
     position: center,
   });
   infoWindow.open(map);
+  */
     var distance = haversine_distance(mk1, mk2);
   document.getElementById('msg').innerHTML = "Your guess was: " + distance.toFixed(2) + " miles off!";
   alert("Your guess was: " + distance.toFixed(2) + " miles off!");
