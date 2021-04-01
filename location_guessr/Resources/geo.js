@@ -121,6 +121,9 @@ $(".check2").click(function() {
 
 if(searchq=="5r_game"){
   alert("5 round game!");
+  var score= new Array(5);
+  run();
+  alert("round1-"+String(distance.toFixed(2)));
   /*
 //for 5 round game
 for (int i=0;i<6;i++){
