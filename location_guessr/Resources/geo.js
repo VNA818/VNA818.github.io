@@ -91,17 +91,24 @@ function initPano(ilat,ilon) {
     }
   );
 }
-var status=7;
+
+function run(){
+  var status=7;
 initPano(59.33622, 18.05637);
 var loc;
 loc=randloc();
-alert("Location found!");
+//alert("Location found!");
 initPano(parseFloat(loc[0]), parseFloat(loc[1]));
 initMap();
 $(".check2").click(function() {
     initMap2(loc_select.lat,loc_select.lng,parseFloat(loc[0]), parseFloat(loc[1]));
   });
+}
+run();
+
+
 $(".reload").click(function() {
-    location.reload();
+    run();
   });
+
 });
