@@ -1,7 +1,7 @@
 $(document).ready(function() {
 const url = window.location; 
 const urlObject = new URL(url);
-const searchq = urlObject.searchParams.get('game_mode');
+const searchq = urlObject.searchParams.get('game_mode'); //ex- https://vna818.github.io/location_guessr/?game_mode=5r_game
 var loc_select;
 function haversine_distance(mk1, mk2) {
   var R = 3958.8; // Radius of the Earth in miles
@@ -119,7 +119,8 @@ $(".check2").click(function() {
 }
 //--------------------------end of functions----------------------------
 
-if(searchq=="5gm"){
+if(searchq=="5r_game"){
+  alert("5 round game!");
   /*
 //for 5 round game
 for (int i=0;i<6;i++){
