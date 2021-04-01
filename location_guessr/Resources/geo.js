@@ -1,7 +1,5 @@
 $(document).ready(function() {
-const url = window.location; 
-const urlObject = new URL(url);
-const searchq = urlObject.searchParams.get('game_mode'); //ex- https://vna818.github.io/location_guessr/?game_mode=5r_game
+
 var loc_select;
 function haversine_distance(mk1, mk2) {
   var R = 3958.8; // Radius of the Earth in miles
@@ -116,30 +114,17 @@ initMap();
 $(".check2").click(function() {
     initMap2(loc_select.lat,loc_select.lng,parseFloat(loc[0]), parseFloat(loc[1]));
   });
- // return 0;
 }
-//--------------------------end of functions----------------------------
-
-if(searchq=="5r_game"){
-  alert("5 round game-!");
-  var score= new Array(5);
-  run();
-  alert("round1-");
-  /*
+run();
+/*
 //for 5 round game
 for (int i=0;i<6;i++){
   run();
 }
 */
-}
-else{
-  run();
-
 
 $(".reload").click(function() {
     run();
   });
-}
-
 
 });
