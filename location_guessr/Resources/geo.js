@@ -116,11 +116,12 @@ initMap();
 $(".check2").click(function() {
     initMap2(loc_select.lat,loc_select.lng,parseFloat(loc[0]), parseFloat(loc[1]));
   });
+  return 0;
 }
 //--------------------------end of functions----------------------------
 
 if(searchq=="5r_game"){
-  alert("5 round game!");
+  alert("5 round game-!");
   var score= new Array(5);
   run();
   alert("round1-");
