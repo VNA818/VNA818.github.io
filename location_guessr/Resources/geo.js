@@ -40,7 +40,7 @@ function initMap() {
 function initMap2(clat,clng,alat,alng) {
   // The map, centered on Central Park
   const center = {lat: alat, lng: alng};
-  const options = {zoom: 3, scaleControl: true, center: center};
+  const options = {zoom: 3, scaleControl: true, streetViewControl: false, center: center};
   map = new google.maps.Map(
       document.getElementById('mappick'), options);
   // Locations of landmarks
@@ -50,6 +50,10 @@ function initMap2(clat,clng,alat,alng) {
   // The markers for The Dakota and The Frick Collection
   var mk1 = new google.maps.Marker({position: dakota, map: map});
   var mk2 = new google.maps.Marker({position: frick, map: map});
+  let infoWindow = new google.maps.InfoWindow({
+    content: "Street view location!",
+    position: center,
+  });
     var distance = haversine_distance(mk1, mk2);
   document.getElementById('msg').innerHTML = "Your guess was: " + distance.toFixed(2) + " miles off!";
   alert("Your guess was: " + distance.toFixed(2) + " miles off!");
