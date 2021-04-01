@@ -34,6 +34,7 @@ function initMap() {
       JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
     );
     infoWindow.open(mappick);
+    document.getElementById("check2").disabled = false;
     loc_select=mapsMouseEvent.latLng.toJSON();
   });
 }
@@ -93,6 +94,7 @@ function initPano(ilat,ilon) {
 }
 
 function run(){
+  document.getElementById("check2").disabled = true;
   var status=7;
 initPano(59.33622, 18.05637);
 var loc;
