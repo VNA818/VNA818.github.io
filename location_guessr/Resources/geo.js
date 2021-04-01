@@ -96,6 +96,8 @@ function initPano(ilat,ilon) {
       zoomControlOptions: {
         position: google.maps.ControlPosition.RIGHT_TOP,
       },
+      gestureHandling: "none",
+  zoomControl: false,
     }
   );
 }
