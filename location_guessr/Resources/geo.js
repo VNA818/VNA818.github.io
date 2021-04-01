@@ -1,4 +1,7 @@
 $(document).ready(function() {
+const url = window.location; 
+const urlObject = new URL(url);
+const searchq = urlObject.searchParams.get('game_mode');
 var loc_select;
 function haversine_distance(mk1, mk2) {
   var R = 3958.8; // Radius of the Earth in miles
@@ -96,7 +99,7 @@ function initPano(ilat,ilon) {
       zoomControlOptions: {
         position: google.maps.ControlPosition.RIGHT_TOP,
       },
-      
+
     }
   );
 }
@@ -114,11 +117,24 @@ $(".check2").click(function() {
     initMap2(loc_select.lat,loc_select.lng,parseFloat(loc[0]), parseFloat(loc[1]));
   });
 }
-run();
+//--------------------------end of functions----------------------------
+
+if(searchq=="5gm"){
+  /*
+//for 5 round game
+for (int i=0;i<6;i++){
+  run();
+}
+*/
+}
+else{
+  run();
 
 
 $(".reload").click(function() {
     run();
   });
+}
+
 
 });
