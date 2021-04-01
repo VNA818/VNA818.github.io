@@ -116,7 +116,7 @@ initMap();
 $(".check2").click(function() {
     initMap2(loc_select.lat,loc_select.lng,parseFloat(loc[0]), parseFloat(loc[1]));
   });
-  return 0;
+ // return 0;
 }
 //--------------------------end of functions----------------------------
 
