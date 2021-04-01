@@ -87,7 +87,10 @@ function initPano(ilat,ilon) {
       linksControl: false,
       showRoadLabels: false,
       fullscreenControl: false,
-      panControl: false,
+      panControl: true,
+      panControlOptions: {
+        position: google.maps.ControlPosition.RIGHT_TOP,
+      },
       enableCloseButton: false,
       zoomControl: true,
       zoomControlOptions: {
