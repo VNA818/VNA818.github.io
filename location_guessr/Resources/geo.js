@@ -89,12 +89,12 @@ function initPano(ilat,ilon) {
       fullscreenControl: false,
       panControl: true,
       panControlOptions: {
-        position: google.maps.ControlPosition.RIGHT_TOP,
+        position: google.maps.ControlPosition.LEFT_TOP,
       },
       enableCloseButton: false,
       zoomControl: true,
       zoomControlOptions: {
-        position: google.maps.ControlPosition.LEFT_TOP,
+        position: google.maps.ControlPosition.RIGHT_TOP,
       },
     }
   );
