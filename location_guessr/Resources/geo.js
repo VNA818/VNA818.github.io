@@ -89,6 +89,10 @@ function initPano(ilat,ilon) {
       fullscreenControl: false,
       panControl: false,
       enableCloseButton: false,
+      zoomControl: true,
+      zoomControlOptions: {
+        position: google.maps.ControlPosition.LEFT_TOP,
+      },
     }
   );
 }
