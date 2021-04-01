@@ -124,7 +124,7 @@ for (int i=0;i<6;i++){
 */
 
 $(".reload").click(function() {
-    run();
+    window.location.reload();
   });
 
 });
