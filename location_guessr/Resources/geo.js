@@ -54,6 +54,7 @@ function initMap2(clat,clng,alat,alng) {
     content: "Street view location!",
     position: center,
   });
+  infoWindow.open(map);
     var distance = haversine_distance(mk1, mk2);
   document.getElementById('msg').innerHTML = "Your guess was: " + distance.toFixed(2) + " miles off!";
   alert("Your guess was: " + distance.toFixed(2) + " miles off!");
