@@ -118,8 +118,9 @@ $(".check2").click(function() {
 //-----------------end of functions------------------
 if(fr==true){
   run();
+  fr=false;
 }
-fr=false;
+
 /*
 //for 5 round game
 for (int i=0;i<6;i++){
