@@ -116,7 +116,7 @@ $(".check2").click(function() {
   });
 }
 //-----------------end of functions------------------
-//run();
+run();
 /*
 //for 5 round game
 for (int i=0;i<6;i++){
@@ -125,7 +125,7 @@ for (int i=0;i<6;i++){
 */
 
 $(".reload").click(function() {
-    run();
+    window.location.reload();
   });
 
 });
