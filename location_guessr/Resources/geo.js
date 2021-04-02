@@ -38,7 +38,6 @@ function initMap() {
     document.getElementById("check2").disabled = false;
     loc_select=mapsMouseEvent.latLng.toJSON();
   });
-  return 0;
 }
 function initMap2(clat,clng,alat,alng) {
   // The map, centered on Central Park
@@ -64,7 +63,6 @@ function initMap2(clat,clng,alat,alng) {
     var distance = haversine_distance(mk1, mk2);
   document.getElementById('msg').innerHTML = "Your guess was: " + distance.toFixed(2) + " miles off!";
   alert("Your guess was: " + distance.toFixed(2) + " miles off!");
-  return 0;
 }
 function randloc(){
   var jsonfile2 = "https://vna818.github.io/location_guessr/Resources/data_ctemp.JSON";
@@ -102,7 +100,6 @@ function initPano(ilat,ilon) {
 
     }
   );
-  return 0;
 }
 
 function run(){
@@ -117,7 +114,6 @@ initMap();
 $(".check2").click(function() {
     initMap2(loc_select.lat,loc_select.lng,parseFloat(loc[0]), parseFloat(loc[1]));
   });
-return 0;
 }
 //-----------------end of functions------------------
 run();
@@ -129,7 +125,7 @@ for (int i=0;i<6;i++){
 */
 //why is run() here running twice with prev loc
 $(".reload").click(function() {
-    run();
+    window.location.reload();
   });
 
 });
