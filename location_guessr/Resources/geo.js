@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+function run(){
 var loc_select;
 function haversine_distance(mk1, mk2) {
   var R = 3958.8; // Radius of the Earth in miles
@@ -102,7 +102,7 @@ function initPano(ilat,ilon) {
   );
 }
 
-function run(){
+
   document.getElementById("check2").disabled = true;
   var status=7;
    loc_select=0;
@@ -126,7 +126,7 @@ for (int i=0;i<6;i++){
 */
 //why is run() here running twice with prev loc
 $(".reload").click(function() {
-    window.location.reload();
+    run();
   });
 
 });
