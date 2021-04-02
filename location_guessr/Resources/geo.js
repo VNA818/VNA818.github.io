@@ -1,5 +1,5 @@
 $(document).ready(function() {
-var fr=true;
+
 var loc_select;
 function haversine_distance(mk1, mk2) {
   var R = 3958.8; // Radius of the Earth in miles
@@ -116,11 +116,7 @@ $(".check2").click(function() {
   });
 }
 //-----------------end of functions------------------
-if(fr==true){
-  run();
-  fr=false;
-}
-
+run();
 /*
 //for 5 round game
 for (int i=0;i<6;i++){
@@ -129,7 +125,7 @@ for (int i=0;i<6;i++){
 */
 
 $(".reload").click(function() {
-    run();
+    window.location.reload();
   });
 
 });
