@@ -111,13 +111,12 @@ loc=randloc();
 //alert("Location found!");
 initPano(parseFloat(loc[0]), parseFloat(loc[1]));
 initMap();
-return 0;
-}
-//-----------------end of functions------------------
-run();
 $(".check2").click(function() {
     initMap2(loc_select.lat,loc_select.lng,parseFloat(loc[0]), parseFloat(loc[1]));
   });
+}
+//-----------------end of functions------------------
+run();
 /*
 //for 5 round game
 for (int i=0;i<6;i++){
@@ -126,7 +125,7 @@ for (int i=0;i<6;i++){
 */
 //why is run() here running twice with prev loc
 $(".reload").click(function() {
-    run();
+    window.location.reload();
   });
 
 });
