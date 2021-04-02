@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-
+var loc_select;
 function haversine_distance(mk1, mk2) {
   var R = 3958.8; // Radius of the Earth in miles
   var rlat1 = mk1.position.lat() * (Math.PI/180); // Convert degrees to radians
@@ -105,7 +105,7 @@ function initPano(ilat,ilon) {
 function run(){
   document.getElementById("check2").disabled = true;
   var status=7;
-  var loc_select;
+   loc_select=0;
 initPano(59.33622, 18.05637);
 var loc;
 loc=randloc();
