@@ -111,7 +111,7 @@ loc=randloc();
 //alert("Location found!");
 initPano(parseFloat(loc[0]), parseFloat(loc[1]));
 initMap();
-
+return 0;
 }
 //-----------------end of functions------------------
 run();
