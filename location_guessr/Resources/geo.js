@@ -126,7 +126,7 @@ for (int i=0;i<6;i++){
 */
 //why is run() here running twice with prev loc
 $(".reload").click(function() {
-    run();
+    window.location.reload();
   });
 
 });
