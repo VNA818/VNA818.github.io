@@ -112,6 +112,9 @@ loc=randloc();
 //alert("Location found!");
 initPano(parseFloat(loc[0]), parseFloat(loc[1]));
 initMap();
+$(".rth").click(function() {
+    initPano(parseFloat(loc[0]), parseFloat(loc[1]));
+  });
 $(".check2").click(function() {
     initMap2(loc_select.lat,loc_select.lng,parseFloat(loc[0]), parseFloat(loc[1]));
   });
@@ -125,9 +128,7 @@ for (int i=0;i<6;i++){
 }
 */
 //why is run() here running twice with prev loc
-$(".rth").click(function() {
-    initPano(parseFloat(loc[0]), parseFloat(loc[1]));
-  });
+
 $(".reload").click(function() {
     window.location.reload();
   });
