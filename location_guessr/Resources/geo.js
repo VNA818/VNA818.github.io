@@ -111,7 +111,7 @@ function run(){
   var status=7;
    loc_select=0;
 initPano(59.33622, 18.05637);
-if(multi!=null||multi=="rec"){
+if(multi==null){
 var loc;
 loc=randloc();
 }
@@ -145,7 +145,10 @@ function multiplayer(){
  
  conn.on('open', function(){
   alert("connected to "+sq);
-  conn.send([59.33622, 18.05637]);
+  var loc;
+  loc=randloc();
+  conn.send(loc);
+  run();
   // here you have conn.id
   /*
   run();
