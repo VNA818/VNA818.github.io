@@ -4,6 +4,7 @@ const url = window.location;
 const urlObject = new URL(url);
 const multi = urlObject.searchParams.get('multi_mode'); //ex- https://vna818.github.io/location_guessr/?game_mode=5r_game
 var loc_select;
+var loc2;
 $( '.sender' ).hide();
 function haversine_distance(mk1, mk2) {
   var R = 3958.8; // Radius of the Earth in miles
@@ -114,6 +115,8 @@ initPano(59.33622, 18.05637);
 if(multi==null){
 var loc;
 loc=randloc();
+}else{
+  var loc=loc2;
 }
 //alert("Location found!");
 initPano(parseFloat(loc[0]), parseFloat(loc[1]));
@@ -145,9 +148,8 @@ function multiplayer(){
  
  conn.on('open', function(){
   alert("connected to "+sq);
-  var loc;
-  loc=randloc();
-  conn.send(loc);
+  loc2=randloc();
+  conn.send(loc2);
   run();
   // here you have conn.id
   /*
@@ -201,7 +203,7 @@ peer.on('connection', function(conn) {
     alert("Recieved:");
     alert(data);
     if(initr==false){
-      var loc=data;
+       loc2=data;
       run();
       initr=true;
     }
