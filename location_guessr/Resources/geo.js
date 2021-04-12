@@ -118,7 +118,7 @@ loc=randloc();
 //alert("Location found!");
 initPano(parseFloat(loc[0]), parseFloat(loc[1]));
 initMap();
-if(inits==false&&multi=="rec"){
+if(multi=="rec"){
     alert("sending loc");
     conn.send(loc);
     inits=true;
