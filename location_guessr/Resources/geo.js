@@ -111,7 +111,7 @@ function run(){
   var status=7;
    loc_select=0;
 initPano(59.33622, 18.05637);
-if(multi!=null||multi=="send"){
+if(multi!=null||multi=="rec"){
 var loc;
 loc=randloc();
 }
