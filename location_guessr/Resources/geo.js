@@ -147,7 +147,7 @@ function multiplayer(){
   alert("connected to "+sq);
   // here you have conn.id
   run();
-  if(loc!=null&&inits==false){
+  if(inits==false){
     conn.send(loc);
     inits=true;
   }
