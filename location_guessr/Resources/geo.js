@@ -111,8 +111,10 @@ function run(){
   var status=7;
    loc_select=0;
 initPano(59.33622, 18.05637);
+if(multi!=null||multi=="send"){
 var loc;
 loc=randloc();
+}
 //alert("Location found!");
 initPano(parseFloat(loc[0]), parseFloat(loc[1]));
 initMap();
@@ -125,6 +127,7 @@ $(".check2").click(function() {
 }
 function multiplayer(){
   if(multi=="rec"){
+    var inits=false;
   alert("reciever");
 
   var peer = new Peer(); 
@@ -143,7 +146,12 @@ function multiplayer(){
  conn.on('open', function(){
   alert("connected to "+sq);
   // here you have conn.id
-  conn.send('hi!');
+  run();
+  if(loc!=null&&inits==false){
+    conn.send(loc);
+    inits=true;
+  }
+  
 });
 
   });
@@ -153,6 +161,7 @@ function multiplayer(){
   
 }
 if (multi=="send"){
+  var initr=false;
   $( '.sender' ).show();
   alert("sender");
   var pid;
@@ -183,7 +192,11 @@ peer.on('connection', function(conn) {
 
     alert("Recieved:");
     alert(data);
-
+    if(initr==false){
+      var loc=data;
+      run();
+      initr=true;
+    }
  
   });
 
@@ -193,11 +206,12 @@ peer.on('connection', function(conn) {
 }
 }
 //-----------------end of functions------------------
-if(multi!=null){
+if(multi=="rec"||multi=="send"){
   multiplayer();
 }
-
-run();
+else{
+  run();
+}
 /*
 //for 5 round game
 for (int i=0;i<6;i++){
