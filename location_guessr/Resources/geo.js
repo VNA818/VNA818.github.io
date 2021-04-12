@@ -118,11 +118,6 @@ loc=randloc();
 //alert("Location found!");
 initPano(parseFloat(loc[0]), parseFloat(loc[1]));
 initMap();
-if(multi=="rec"){
-    alert("sending loc");
-    conn.send(loc);
-    inits=true;
-  }
 $(".rth").click(function() {
     initPano(parseFloat(loc[0]), parseFloat(loc[1]));
   });
@@ -150,9 +145,17 @@ function multiplayer(){
  
  conn.on('open', function(){
   alert("connected to "+sq);
+  conn.send([59.33622, 18.05637]);
   // here you have conn.id
+  /*
   run();
-
+  alert("sending loc");
+  if(inits==false){
+    alert("sending loc");
+    conn.send(loc);
+    inits=true;
+  }
+  */
   
 });
 
