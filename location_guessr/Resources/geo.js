@@ -148,6 +148,7 @@ function multiplayer(){
   // here you have conn.id
   run();
   if(inits==false){
+    alert("sending loc");
     conn.send(loc);
     inits=true;
   }
