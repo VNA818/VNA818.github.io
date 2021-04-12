@@ -3,7 +3,6 @@ $(document).ready(function() {
 const url = window.location; 
 const urlObject = new URL(url);
 const multi = urlObject.searchParams.get('multi_mode'); //ex- https://vna818.github.io/location_guessr/?game_mode=5r_game
-alert(multi);
 var loc_select;
 $( '.sender' ).hide();
 function haversine_distance(mk1, mk2) {
