@@ -16,6 +16,15 @@
  <img id="rth" class="rth" src="http://maps.google.com/mapfiles/ms/icons/green-dot.png"  title="Return to start"/>
   <div id ="cover">
     <input class= 'check2' type="button" value="Guess!" id="check2"/><input class= 'reload' type="button" value="New Location" id="check3"/> <div id="msg">Result:</div>
+    <form class="sender" name="sForm" action="#" method="post" onsubmit="return false">
+        <fieldset>   
+            <input class= 'subb' type="submit" value="submit" id="submitButton" name="submitButton"/>
+              <input class= 'send' type="submit" value="send" id="send" name="send"/>
+          <div class="formData">      
+            <div class="value"><input class="search" type="text" size="60" value="" placeholder="id" name="search" id="search"/></div>      
+            </div>  
+        </fieldset>
+      </form>
   </div>
     <div id="map"></div>
     <div id="mappick"></div>

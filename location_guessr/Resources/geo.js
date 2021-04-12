@@ -1,6 +1,11 @@
 $(document).ready(function() {
 
+const url = window.location; 
+const urlObject = new URL(url);
+const multi = urlObject.searchParams.get('multi_mode'); //ex- https://vna818.github.io/location_guessr/?game_mode=5r_game
+alert(multi);
 var loc_select;
+$( '.sender' ).hide();
 function haversine_distance(mk1, mk2) {
   var R = 3958.8; // Radius of the Earth in miles
   var rlat1 = mk1.position.lat() * (Math.PI/180); // Convert degrees to radians
@@ -119,7 +124,80 @@ $(".check2").click(function() {
     initMap2(loc_select.lat,loc_select.lng,parseFloat(loc[0]), parseFloat(loc[1]));
   });
 }
+function multiplayer(){
+  if(multi=="rec"){
+  alert("reciever");
+
+  var peer = new Peer(); 
+  peer.on('open', function(id) {
+      alert('My peer ID is: ' + id);
+  });
+  peer.on('connection', function(conn) {
+  conn.on('data', function(data){
+    // Will print 'hi!'
+
+    alert("Recieved:");
+    alert(data);
+
+    var conn = peer.connect(data);
+ 
+ conn.on('open', function(){
+  alert("connected to "+sq);
+  // here you have conn.id
+  conn.send('hi!');
+});
+
+  });
+
+
+});
+  
+}
+if (multi=="send"){
+  $( '.sender' ).show();
+  alert("sender");
+  var pid;
+  var sq="";
+  var peer = new Peer(); 
+  peer.on('open', function(id) {
+      //alert('My peer ID is: ' + id);
+      pid=id;
+  });
+
+  $("#submitButton").click(function() {
+
+    var sq= $("#search").val();
+
+ var conn = peer.connect(sq);
+ 
+ conn.on('open', function(){
+  alert("connected to "+sq);
+  // here you have conn.id
+  conn.send(pid);
+});
+
+  });
+
+peer.on('connection', function(conn) {
+  conn.on('data', function(data){
+    // Will print 'hi!'
+
+    alert("Recieved:");
+    alert(data);
+
+ 
+  });
+
+
+});
+
+}
+}
 //-----------------end of functions------------------
+if(multi!=null){
+  multiplayer();
+}
+
 run();
 /*
 //for 5 round game
