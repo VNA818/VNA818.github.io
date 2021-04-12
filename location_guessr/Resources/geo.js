@@ -118,6 +118,11 @@ loc=randloc();
 //alert("Location found!");
 initPano(parseFloat(loc[0]), parseFloat(loc[1]));
 initMap();
+if(inits==false&&multi=="rec"){
+    alert("sending loc");
+    conn.send(loc);
+    inits=true;
+  }
 $(".rth").click(function() {
     initPano(parseFloat(loc[0]), parseFloat(loc[1]));
   });
@@ -147,11 +152,7 @@ function multiplayer(){
   alert("connected to "+sq);
   // here you have conn.id
   run();
-  if(inits==false){
-    alert("sending loc");
-    conn.send(loc);
-    inits=true;
-  }
+
   
 });
 
