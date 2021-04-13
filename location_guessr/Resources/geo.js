@@ -260,8 +260,7 @@ $(".check2").click(function() {
 });
          
 
-          
-      
+          //
       
  }
   });
