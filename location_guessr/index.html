@@ -7,27 +7,36 @@
   integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
   crossorigin="anonymous"></script>
    
-      	 <link href="https://vna818.github.io/location_guessr/Resources/geo.css" rel="stylesheet">
+         <link href="http://localhost/geotest/geo.css" rel="stylesheet">
 <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
- <script src="https://vna818.github.io/location_guessr/Resources/geo.js"></script>
+ <script src="http://localhost/geotest/geo.js"></script>
 
   </head>
   <body>
- <img id="rth" class="rth" src="http://maps.google.com/mapfiles/ms/icons/green-dot.png"  title="Return to start"/>
+    <div id="menu">
+    
+    </div>
+    <img id="rth" class="rth" src="http://maps.google.com/mapfiles/ms/icons/green-dot.png"  title="Return to start"/>
   <div id ="cover">
-    <input class= 'check2' type="button" value="Guess!" id="check2"/><input class= 'reload' type="button" value="New Location" id="check3"/> <div id="msg">Result:</div>
-    <form class="sender" name="sForm" action="#" method="post" onsubmit="return false">
-        <fieldset>   
+     <input class= 'check2' type="button" value="Guess!" id="check2"/><input class= 'reload' type="button" value="New Loaction" id="check3"/>  <div id="msg">Result:</div> <div id="msg2">Opponent result:</div>
+     <form class="sender" name="sForm" action="#" method="post" onsubmit="return false">
+        <fieldset>
+         
             <input class= 'subb' type="submit" value="submit" id="submitButton" name="submitButton"/>
-              <input class= 'send' type="submit" value="send" id="send" name="send"/>
-          <div class="formData">      
-            <div class="value"><input class="search" type="text" size="60" value="" placeholder="id" name="search" id="search"/></div>      
-            </div>  
+             
+          <div class="formData">
+            
+            <div class="value"><input class="search" type="text" size="60" value="" placeholder="id" name="search" id="search"/></div>
+          
+        
+            </div>
+            
+            
         </fieldset>
       </form>
   </div>
     <div id="map"></div>
-    <div id="mappick"></div>
+     <div id="mappick"></div>
 </div>
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLIjV_yPuibS6by1Lt-fIADrX1NVJHBUA&callback=initPano&libraries=&v=weekly"

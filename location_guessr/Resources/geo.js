@@ -5,7 +5,13 @@ const urlObject = new URL(url);
 const multi = urlObject.searchParams.get('multi_mode'); //ex- https://vna818.github.io/location_guessr/?game_mode=5r_game
 var loc_select;
 var loc2;
+var conn;
+var peer;
+var opploc;
+var mydist;
+var sl=false;
 $( '.sender' ).hide();
+$( '#msg2' ).hide();
 function haversine_distance(mk1, mk2) {
   var R = 3958.8; // Radius of the Earth in miles
   var rlat1 = mk1.position.lat() * (Math.PI/180); // Convert degrees to radians
@@ -66,6 +72,7 @@ function initMap2(clat,clng,alat,alng) {
   infoWindow.open(map);
   */
     var distance = haversine_distance(mk1, mk2);
+    mydist=distance;
   document.getElementById('msg').innerHTML = "Your guess was: " + distance.toFixed(2) + " miles off!";
   alert("Your guess was: " + distance.toFixed(2) + " miles off!");
 }
@@ -121,36 +128,65 @@ loc=randloc();
 //alert("Location found!");
 initPano(parseFloat(loc[0]), parseFloat(loc[1]));
 initMap();
+
+ 
+
 $(".rth").click(function() {
     initPano(parseFloat(loc[0]), parseFloat(loc[1]));
   });
 $(".check2").click(function() {
     initMap2(loc_select.lat,loc_select.lng,parseFloat(loc[0]), parseFloat(loc[1]));
+
+        
+        if(multi=="rec"||multi=="send"){
+           sl=true;
+           //alert("sending loc");
+          $( '#msg2' ).show();
+        }
+
   });
 }
 function multiplayer(){
   if(multi=="rec"){
+    document.getElementById("check3").disabled = true;
     var inits=false;
-  alert("reciever");
+  alert("Player");
 
-  var peer = new Peer(); 
+   peer = new Peer(); 
   peer.on('open', function(id) {
-      alert('My peer ID is: ' + id);
+      alert('Please give your id: ' + id);
   });
   peer.on('connection', function(conn) {
   conn.on('data', function(data){
     // Will print 'hi!'
-
+if(data[3]==true){
+  alert("rec loc");
+  alert("recieved opponent's loc");
+  opploc=[data[0],data[1]];
+ 
+  document.getElementById('msg2').innerHTML = "Opponent: " + data[2].toFixed(2) + " miles off!";
+}
+  else{
     alert("Recieved:");
-    alert(data);
+    //alert(data);
 
-    var conn = peer.connect(data);
+     conn = peer.connect(data);
  
  conn.on('open', function(){
   alert("connected to "+sq);
   loc2=randloc();
   conn.send(loc2);
   run();
+
+  $(".check2").click(function() {
+      conn = peer.connect(data);
+           conn.on('open', function(){
+  alert("sending loc");
+
+  conn.send(conn.send([loc_select.lat,loc_select.lng,mydist,true]));
+ 
+    });
+});
   // here you have conn.id
   /*
   run();
@@ -163,7 +199,7 @@ function multiplayer(){
   */
   
 });
-
+}
   });
 
 
@@ -171,12 +207,13 @@ function multiplayer(){
   
 }
 if (multi=="send"){
+  document.getElementById("check3").disabled = true;
   var initr=false;
   $( '.sender' ).show();
-  alert("sender");
+  alert("Host: please enter opponent's id");
   var pid;
   var sq="";
-  var peer = new Peer(); 
+   peer = new Peer(); 
   peer.on('open', function(id) {
       //alert('My peer ID is: ' + id);
       pid=id;
@@ -184,12 +221,13 @@ if (multi=="send"){
 
   $("#submitButton").click(function() {
 
-    var sq= $("#search").val();
+     sq= $("#search").val();
 
- var conn = peer.connect(sq);
+  conn = peer.connect(sq);
  
  conn.on('open', function(){
   alert("connected to "+sq);
+  $( '.sender' ).hide();
   // here you have conn.id
   conn.send(pid);
 });
@@ -199,19 +237,39 @@ if (multi=="send"){
 peer.on('connection', function(conn) {
   conn.on('data', function(data){
     // Will print 'hi!'
-
+if(data[3]==true){
+  alert("rec loc");
+  alert("recieved opponent's loc");
+  opploc=[data[0],data[1]];
+  document.getElementById('msg2').innerHTML = "Opponent: " + data[2].toFixed(2) + " miles off!";
+}
+  else{
     alert("Recieved:");
-    alert(data);
-    if(initr==false){
+    //alert(data);
+
        loc2=data;
-      run();
-      initr=true;
-    }
+run();
+$(".check2").click(function() {
+      conn = peer.connect(sq);
+           conn.on('open', function(){
+  alert("sending loc");
+
+  conn.send([loc_select.lat,loc_select.lng,mydist,true]);
  
+    });
+});
+         
+
+          
+      
+      
+ }
   });
 
 
 });
+
+
 
 }
 }
