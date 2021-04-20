@@ -118,7 +118,7 @@ function run(){
   document.getElementById("check2").disabled = true;
   var status=7;
    loc_select=0;
-initPano(59.33622, 18.05637);
+//initPano(59.33622, 18.05637);
 if(multi==null){
 var loc;
 loc=randloc();
