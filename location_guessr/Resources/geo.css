@@ -174,44 +174,7 @@
      	line-height: 4.5vh;
      	position: absolute;
       }
-      #eid{
-
-      	height:100%;
-      	width: 100%;
-      	position: absolute;
-      	text-align: center;
-      	z-index: 0;
-      	background-color:white;
-      	font-size: 3vh;
-      	color:#222222;
-      	visibility: hidden;
-      }
-      .search{
-      	font-size:3vh;
-      	color:#222222;
       
-      }
-      .subb{
-      	cursor:pointer;
-    display:inline;
-
- 
-	border-radius:4px;
-	border-style: solid;
-	font-weight: bold;
-	font-size: 1vw; 
-	color:white;
-	border-color:#689AFB;
-	background-color: #689AFB;
-	height:4vh;
-	margin-top:0.5vh;
-	width:10vw;
-	outline:none;
-      }
-      fieldset{
-      	border-style: none;
-
-      }
 
 html,
 body {

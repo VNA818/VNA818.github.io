@@ -1,17 +1,20 @@
 $(document).ready(function() {
-
+//$( '#sidemenu' ).hide();
+$( '.sender' ).hide();
+$( '#msg2' ).hide();
 const url = window.location; 
 const urlObject = new URL(url);
-const multi = urlObject.searchParams.get('multi_mode'); //ex- https://vna818.github.io/location_guessr/?game_mode=5r_game
+const multi = urlObject.searchParams.get('multiplayer');
+ //ex- https://vna818.github.io/location_guessr/?game_mode=5r_game
 var loc_select;
 var loc2;
 var conn;
 var peer;
-var opploc;
+var opploc=null;
 var mydist;
 var sl=false;
-$( '.sender' ).hide();
-$( '#msg2' ).hide();
+var oppdist=null;
+
 function haversine_distance(mk1, mk2) {
   var R = 3958.8; // Radius of the Earth in miles
   var rlat1 = mk1.position.lat() * (Math.PI/180); // Convert degrees to radians
@@ -61,20 +64,80 @@ function initMap2(clat,clng,alat,alng) {
   const frick = {lat: clat, lng: clng};
   var line = new google.maps.Polyline({path: [dakota, frick], map: map});
   // The markers for The Dakota and The Frick Collection
-  var mk1 = new google.maps.Marker({position: dakota, map: map});
-  var mk2 = new google.maps.Marker({position: frick, map: map});
-  mk1.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png')
-  /*
-  let infoWindow = new google.maps.InfoWindow({
-    content: "Street view location!",
-    position: center,
-  });
-  infoWindow.open(map);
-  */
+ // var mk1 = new google.maps.Marker({position: dakota, map: map});
+ // var mk2 = new google.maps.Marker({position: frick, map: map});
+//mk1.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
+
+  mk1 = new google.maps.Marker({
+        position: dakota,
+        icon: {
+     url: 'https://maps.google.com/mapfiles/ms/icons/green-dot.png',
+     labelOrigin: { x: 12, y: -10}
+      },
+        map: map,
+        label: {
+     text: "Actual location",
+     color: '#222222',
+     fontSize: '12px'
+    }
+    });
+
+  mk2 = new google.maps.Marker({
+        position: frick,
+        icon: {
+     url: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png',
+     labelOrigin: { x: 12, y: -10}
+      },
+        map: map,
+        label: {
+     text: "Your guess",
+     color: '#222222',
+     fontSize: '12px'
+    }
+    });
+
+  
+    if(opploc!=null){
+
+    const falcon = {lat: opploc[0], lng: opploc[1]};
+   // var mk3 = new google.maps.Marker({position: falcon, map: map});
+   // mk3.setIcon('https://maps.google.com/mapfiles/ms/icons/blue-dot.png');
+
+    marker = new google.maps.Marker({
+        position: falcon,
+        icon: {
+     url: 'https://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+     labelOrigin: { x: 12, y: -10}
+      },
+        map: map,
+        label: {
+     text: "Opponent",
+     color: '#222222',
+     fontSize: '12px'
+    }
+    });
+    so=true;
+  }
     var distance = haversine_distance(mk1, mk2);
     mydist=distance;
-  document.getElementById('msg').innerHTML = "Your guess was: " + distance.toFixed(2) + " miles off!";
+   if(oppdist!=null){
+      if(oppdist<mydist){
+    document.getElementById('msg2').innerHTML = "Opponent (Winner!): " + oppdist.toFixed(2) + " miles off!";
+    document.getElementById('msg').innerHTML = "Your guess (Loser!) was: " + distance.toFixed(2) + " miles off!";
+  }else if (oppdist==mydist){
+    document.getElementById('msg2').innerHTML = "Opponent (Tie!): " + oppdist.toFixed(2) + " miles off!";
+    document.getElementById('msg').innerHTML = "Your guess (Tie!) was: " + distance.toFixed(2) + " miles off!";
+  }else if (oppdist>mydist){
+    document.getElementById('msg2').innerHTML = "Opponent (Loser!): " + oppdist.toFixed(2) + " miles off!";
+    document.getElementById('msg').innerHTML = "Your guess (Winner!) was: " + distance.toFixed(2) + " miles off!";
+    } 
+  }else{
+    document.getElementById('msg').innerHTML = "Your guess was: " + distance.toFixed(2) + " miles off!";
+  }
+  
   alert("Your guess was: " + distance.toFixed(2) + " miles off!");
+  document.getElementById("check2").disabled = true;
+  sl=true;
 }
 function randloc(){
   var jsonfile2 = "https://vna818.github.io/location_guessr/Resources/data_ctemp.JSON";
@@ -150,26 +213,52 @@ function multiplayer(){
   if(multi=="rec"){
     document.getElementById("check3").disabled = true;
     var inits=false;
-  alert("Player");
 
    peer = new Peer(); 
   peer.on('open', function(id) {
-      alert('Please give your id: ' + id);
+      alert('Host: Please give your id: ' + id);
   });
   peer.on('connection', function(conn) {
   conn.on('data', function(data){
     // Will print 'hi!'
 if(data[3]==true){
-  alert("rec loc");
-  alert("recieved opponent's loc");
+  alert("Your opponent has guessed a location!");
   opploc=[data[0],data[1]];
- 
-  document.getElementById('msg2').innerHTML = "Opponent: " + data[2].toFixed(2) + " miles off!";
+  oppdist=data[2];
+  if(data[2]<mydist){
+    document.getElementById('msg2').innerHTML = "Opponent (Winner!): " + data[2].toFixed(2) + " miles off!";
+    document.getElementById('msg').innerHTML = "Your guess (Loser!) was: " + mydist.toFixed(2) + " miles off!";
+  }else if (data[2]==mydist){
+    document.getElementById('msg2').innerHTML = "Opponent (Tie!): " + oppdist.toFixed(2) + " miles off!";
+    document.getElementById('msg').innerHTML = "Your guess (Tie!) was: " + mydist.toFixed(2) + " miles off!";
+  }else if (data[2]>mydist){
+    document.getElementById('msg2').innerHTML = "Opponent (Loser!): " + oppdist.toFixed(2) + " miles off!";
+    document.getElementById('msg').innerHTML = "Your guess (Winner!) was: " + mydist.toFixed(2) + " miles off!";
+    } 
+  
+
+  if(opploc!=null&&sl==true){
+    
+   oppmarker = new google.maps.LatLng(opploc[0],opploc[1]);
+    marker = new google.maps.Marker({
+        position: oppmarker,
+        icon: {
+     url: 'https://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+     labelOrigin: { x: 12, y: -10}
+      },
+        map: map,
+        label: {
+     text: "Opponent",
+     color: '#222222',
+     fontSize: '12px'
+    }
+    });
+
+   // marker.setIcon('https://maps.google.com/mapfiles/ms/icons/blue-dot.png');
+
+  }
 }
   else{
-    alert("Recieved:");
-    //alert(data);
-
      conn = peer.connect(data);
  
  conn.on('open', function(){
@@ -181,10 +270,10 @@ if(data[3]==true){
   $(".check2").click(function() {
       conn = peer.connect(data);
            conn.on('open', function(){
-  alert("sending loc");
+  alert("Sending to your opponent");
 
   conn.send(conn.send([loc_select.lat,loc_select.lng,mydist,true]));
- 
+  document.getElementById("check2").disabled = true;
     });
 });
   // here you have conn.id
@@ -210,7 +299,7 @@ if (multi=="send"){
   document.getElementById("check3").disabled = true;
   var initr=false;
   $( '.sender' ).show();
-  alert("Host: please enter opponent's id");
+  alert("Player: Please enter hosts's id");
   var pid;
   var sq="";
    peer = new Peer(); 
@@ -226,7 +315,7 @@ if (multi=="send"){
   conn = peer.connect(sq);
  
  conn.on('open', function(){
-  alert("connected to "+sq);
+  alert("Connected to "+sq);
   $( '.sender' ).hide();
   // here you have conn.id
   conn.send(pid);
@@ -238,24 +327,48 @@ peer.on('connection', function(conn) {
   conn.on('data', function(data){
     // Will print 'hi!'
 if(data[3]==true){
-  alert("rec loc");
-  alert("recieved opponent's loc");
+  alert("Your opponent has guessed a location!");
   opploc=[data[0],data[1]];
-  document.getElementById('msg2').innerHTML = "Opponent: " + data[2].toFixed(2) + " miles off!";
+  oppdist=data[2];
+  if(data[2]<mydist){
+    document.getElementById('msg2').innerHTML = "Opponent (Winner!): " + data[2].toFixed(2) + " miles off!";
+    document.getElementById('msg').innerHTML = "Your guess (Loser!) was: " + mydist.toFixed(2) + " miles off!";
+  }else if (data[2]==mydist){
+    document.getElementById('msg2').innerHTML = "Opponent (Tie!): " + oppdist.toFixed(2) + " miles off!";
+    document.getElementById('msg').innerHTML = "Your guess (Tie!) was: " + mydist.toFixed(2) + " miles off!";
+  }else if (data[2]>mydist){
+    document.getElementById('msg2').innerHTML = "Opponent (Loser!): " + oppdist.toFixed(2) + " miles off!";
+    document.getElementById('msg').innerHTML = "Your guess (Winner!) was: " + mydist.toFixed(2) + " miles off!";
+    } 
+  if(opploc!=null&&sl==true){
+   oppmarker = new google.maps.LatLng(opploc[0],opploc[1]);
+    marker = new google.maps.Marker({
+        position: oppmarker,
+        icon: {
+     url: 'https://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+     labelOrigin: { x: 12, y: -10}
+      },
+        map: map,
+        label: {
+     text: "Opponent",
+     color: '#222222',
+     fontSize: '12px'
+    }
+    });
+    marker.setIcon('https://maps.google.com/mapfiles/ms/icons/blue-dot.png');
+  }
 }
   else{
-    alert("Recieved:");
-    //alert(data);
 
        loc2=data;
 run();
 $(".check2").click(function() {
       conn = peer.connect(sq);
            conn.on('open', function(){
-  alert("sending loc");
+  alert("Sending to your opponent");
 
   conn.send([loc_select.lat,loc_select.lng,mydist,true]);
- 
+ document.getElementById("check2").disabled = true;
     });
 });
          
@@ -279,13 +392,23 @@ if(multi=="rec"||multi=="send"){
 else{
   run();
 }
-/*
-//for 5 round game
-for (int i=0;i<6;i++){
-  run();
-}
-*/
-//why is run() here running twice with prev loc
+$(".menubutton").click(function() {
+  if($( '#sidemenu' ).css('left') == '-305px'){
+    $( '#sidemenu' ).css('left','0');
+   // $( '#sidemenu' ).removeClass("sidemenu");
+  //  $( '#sidemenu' ).addClass("sidemenu2");
+    $("#dim").css('visibility','visible');
+  }
+  else{
+     $("#dim").css('visibility','hidden');
+     $( '#sidemenu' ).css('left','-305px');
+   
+  }
+  });
+$("#dim").click(function() {
+    $("#dim").css('visibility','hidden');
+     $( '#sidemenu' ).css('left','-305px');
+  });
 
 $(".reload").click(function() {
     window.location.reload();
