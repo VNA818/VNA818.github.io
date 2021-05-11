@@ -180,7 +180,7 @@
       	width: 100%;
       	position: absolute;
       	text-align: center;
-      	z-index: 999;
+      	z-index: 0;
       	background-color:white;
       	font-size: 3vh;
       	color:#222222;
