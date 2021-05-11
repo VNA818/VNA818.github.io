@@ -174,7 +174,37 @@
      	line-height: 4.5vh;
      	position: absolute;
       }
-      
+      .subb{
+      	float:left;
+      	display:inline;
+      	cursor:pointer;
+    display:inline;
+    float:left;
+ 
+	border-radius:4px;
+	border-style: solid;
+	font-weight: bold;
+	font-size: 1vw; 
+	color:white;
+	border-color:#689AFB;
+	background-color: #689AFB;
+	height:4vh;
+	margin-top:0.5vh;
+	width:10vw;
+	outline:none;
+	margin-left: 1vw;
+	margin-right:1vw;
+      }
+      .value{
+      	display:inline;
+
+      }
+      .search{
+      	color: #222222;
+      	font-size: 1vw;
+      	line-height: 4.5vh;
+      }
+
 
 html,
 body {
