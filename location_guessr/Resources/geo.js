@@ -393,6 +393,7 @@ else{
   run();
 }
 $(".menubutton").click(function() {
+  alert($( '#sidemenu' ).css('left'));
   if($( '#sidemenu' ).css('left') == '-305px'){
     $( '#sidemenu' ).css('left','0');
    // $( '#sidemenu' ).removeClass("sidemenu");
