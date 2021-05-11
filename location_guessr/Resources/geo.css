@@ -1,51 +1,56 @@
 #rth{
-	top:125px;
+	top:160px;
 	right:0.5vw;
 	position: absolute;
-	z-index: 9999;
+	z-index: 995;
+	cursor:pointer;
 }
 #map {
-  height: 75%;
+  height: 68%;
 }
 #mappick {
-  height: 25%;
+	bottom:0px;
+  height: 27%;
   width:100%;
   float:right;
-  display:inline;
+  position: absolute;
 }
+
 #msg{
 	border-style: solid;
-	font-weight: bold;
-	font-size: 1vw;
+
+	font-size: 1.5vw;
 	border:none; 
 	float:left;
-
-	margin-right:10vw;
-	line-height: 5vh;
+	color:#222222;
+	margin-right:4vw;
+	line-height: 4.5vh;
 	display: inline-block
 }
 #msg2{
 	border-style: solid;
-	font-weight: bold;
-	font-size: 1vw;
+
+	font-size: 1.5vw;
+	color:#222222;
 	display: inline-block;
 	float:left;
 	border:none; 
-	line-height: 5vh;
+	line-height: 4.5vh;
 }
 #cover{
 
 	width:100%;
 	height:5%;
-	bottom:25%;
+	bottom:26.5%;
 	position: absolute;
 	background-color:white;
-	z-index: 9998;
+	z-index: 995;
 }
 #check2{
+	cursor:pointer;
     display:inline;
     float:left;
- 
+ 	margin-left: .5em;
 	border-radius:4px;
 	border-style: solid;
 	font-weight: bold;
@@ -57,27 +62,18 @@
 	margin-top:0.5vh;
 	width:6vw;
 	outline:none;
-	margin-left: 2vw;
+
 }
 #check2:disabled,
 #check2[disabled]{
-	 display:inline;
-    float:left;
- 
-	border-radius:4px;
-	border-style: solid;
-	font-weight: bold;
-	font-size: 1vw; 
-	color:white;
+	cursor:default;
+	
 	border-color:#c9c9c9;
 	background-color: #c9c9c9;
-	height:4vh;
-	margin-top:0.5vh;
-	width:6vw;
-	outline:none;
-	margin-left: 2vw;
+	
 }
 #check3{
+	cursor:pointer;
     display:inline;
     float:left;
  
@@ -92,27 +88,131 @@
 	margin-top:0.5vh;
 	width:10vw;
 	outline:none;
-	margin-left: 2vw;
-	margin-right:2vw;
+	margin-left: 1vw;
+	margin-right:1vw;
 }
 #check3:disabled,
 #check3[disabled]{
+	cursor:default;
+ 
+	border-color:#c9c9c9;
+	background-color: #c9c9c9;
+
+}
+
+      .sidemenu{
+      	transition: .50s;
+      	top:0;
+        left: -305px;
+        font-size:2em;
+        position:absolute;
+        background-color: white;
+        height:100%;
+        width:300px;
+ 
+        z-index: 998;
+      }
+      #dim{
+      	top:0;
+      	background-color: black;
+      	transition: .50s;
+      	position: absolute;
+      	height: 100%;
+      	width: 100%;
+      	opacity:75%;
+      	z-index: 996;
+      	visibility: hidden;
+      }
+      li{
+      	list-style: none;
+      	font-weight: bold;
+      	margin-bottom: 1em;
+      	color:#222222;
+      }
+      a{	
+      	color:black;
+      	text-decoration: none;
+      	color:#222222;
+      }
+      a:hover{
+      	color:#3fd45b;
+      }
+      #topmenu{
+      	height: 5%;
+      	font-size: 3vh;
+      	color: #3fd45b;
+      	background-color: #222222;
+      }
+      .menubutton{
+      	cursor:pointer;
+      	border-style: none;
+      	background-color: #222222;
+      }
+      .menubi{
+      	height:5vh;
+      	background-color: #222222;
+      	position: absolute;
+      	top:.5vh;
+      	
+      }
+      #logo{
+      	font-weight: bold;
+      	
+      	line-height: 4.5vh;
+      	margin-left: 6vh;
+      	display:inline;
+      }
+      #topcl{
+      	color:#666666;
+      	background-color:#222222;
+      	width:100%;
+      	height: 5%;
+
+      }
+      #menulabel{
+     	margin-left: 2vh;
+     	line-height: 4.5vh;
+     	position: absolute;
+      }
+      #eid{
+
+      	height:100%;
+      	width: 100%;
+      	position: absolute;
+      	text-align: center;
+      	z-index: 999;
+      	background-color:white;
+      	font-size: 3vh;
+      	color:#222222;
+      	
+      }
+      .search{
+      	font-size:3vh;
+      	color:#222222;
+      
+      }
+      .subb{
+      	cursor:pointer;
     display:inline;
-    float:left;
+
+ 
 	border-radius:4px;
 	border-style: solid;
 	font-weight: bold;
 	font-size: 1vw; 
 	color:white;
-	border-color:#c9c9c9;
-	background-color: #c9c9c9;
+	border-color:#689AFB;
+	background-color: #689AFB;
 	height:4vh;
 	margin-top:0.5vh;
 	width:10vw;
 	outline:none;
-	margin-left: 2vw;
-	margin-right:2vw;
-}
+      }
+      fieldset{
+      	border-style: none;
+
+      }
+
 html,
 body {
   height: 100%;
