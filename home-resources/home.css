@@ -38,11 +38,12 @@ ul{
   background-size: cover;
   filter: blur(8px);
   -webkit-filter: blur(8px);
-  transform: scale(1.1);
-  width:100%;
+  transform: scale(1.5);
+
 }
 .bg{
   overflow: hidden;
+  height: 110%;
 }
 .content.begin{
   margin-top:100%;
