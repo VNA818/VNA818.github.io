@@ -485,7 +485,7 @@ $("#shrbtn").click(function() {
   const area = document.createElement('textarea');
   body.appendChild(area);
 
-  area.value = "My guess was "+mydist.toFixed(2)+" off on this location, see if you can beat me! http://localhost/geotest/?shareid="+shrchoice;
+  area.value = "My guess was "+mydist.toFixed(2)+" miles off on this location, see if you can beat me! https://vna818.github.io/location_guessr/?shareid="+shrchoice;
   area.select();
   document.execCommand('copy');
 
