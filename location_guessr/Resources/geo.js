@@ -5,6 +5,9 @@ $( '#msg2' ).hide();
 const url = window.location; 
 const urlObject = new URL(url);
 const multi = urlObject.searchParams.get('multiplayer');
+const prid = urlObject.searchParams.get('prid');
+const oprid = urlObject.searchParams.get('oprid');
+const shareid = urlObject.searchParams.get('shareid');
  //ex- https://vna818.github.io/location_guessr/?game_mode=5r_game
 var loc_select;
 var loc2;
@@ -14,6 +17,7 @@ var opploc=null;
 var mydist;
 var sl=false;
 var oppdist=null;
+var shrchoice;
 
 function haversine_distance(mk1, mk2) {
   var R = 3958.8; // Radius of the Earth in miles
@@ -120,6 +124,7 @@ function initMap2(clat,clng,alat,alng) {
   }
     var distance = haversine_distance(mk1, mk2);
     mydist=distance;
+    document.getElementById("shrbtn").disabled = false;
    if(oppdist!=null){
       if(oppdist<mydist){
     document.getElementById('msg2').innerHTML = "Opponent (Winner!): " + oppdist.toFixed(2) + " miles off!";
@@ -147,7 +152,14 @@ function randloc(){
       async: false
   }).responseText;
   var loc_info=JSON.parse(valuel);
-  var choice = String(Math.floor(Math.random() * parseInt(loc_info.locations.size.csize))); 
+  if(shareid==null){
+    var choice = String(Math.floor(Math.random() * parseInt(loc_info.locations.size.csize))); 
+    shrchoice=(choice*82.156)/2;
+  }else{
+    var choice = (shareid/82.156)*2;
+    shrchoice=(choice*82.156)/2;
+  }
+  
   loc_info=loc_info.locations[choice];
   let location = [loc_info.lat,loc_info.long];
   return location;
@@ -179,6 +191,7 @@ function initPano(ilat,ilon) {
 
 function run(){
   document.getElementById("check2").disabled = true;
+  document.getElementById("shrbtn").disabled = true;
   var status=7;
    loc_select=0;
 //initPano(59.33622, 18.05637);
@@ -199,7 +212,7 @@ $(".rth").click(function() {
   });
 $(".check2").click(function() {
     initMap2(loc_select.lat,loc_select.lng,parseFloat(loc[0]), parseFloat(loc[1]));
-
+    $("#shrbtn").css('visibility','visible');
         
         if(multi=="rec"||multi=="send"){
            sl=true;
@@ -213,13 +226,53 @@ function multiplayer(){
   if(multi=="rec"){
     document.getElementById("check3").disabled = true;
     var inits=false;
-
-   peer = new Peer(); 
+    if(prid!=null){
+     
+      peer = new Peer(prid); 
+      peer.on('open', function(id) {
+      alert('Host: Please give your id: ' + id);
+      alert(oprid);
+      conn = peer.connect(oprid);
+      loc2=randloc();
+  conn.send(loc2);
+  run();
+  });
+    }else{
+      peer = new Peer(); 
   peer.on('open', function(id) {
       alert('Host: Please give your id: ' + id);
   });
+    }
+   
+  
   peer.on('connection', function(conn) {
+
+    
+    if(oprid!=null){
+
+     conn = peer.connect(oprid);
+   
+ conn.on('open', function(){
+  alert("connected to "+data);
+  loc2=randloc();
+  conn.send(loc2);
+  run();
+
+  $(".check2").click(function() {
+      conn = peer.connect(data);
+           conn.on('open', function(){
+  alert("Sending to your opponent");
+
+  conn.send(conn.send([loc_select.lat,loc_select.lng,mydist,true]));
+  document.getElementById("check2").disabled = true;
+    });
+});
+
+  
+});
+}
   conn.on('data', function(data){
+
     // Will print 'hi!'
 if(data[3]==true){
   alert("Your opponent has guessed a location!");
@@ -259,10 +312,15 @@ if(data[3]==true){
   }
 }
   else{
-     conn = peer.connect(data);
+    if(oprid!=null){
+
+     conn = peer.connect(oprid);
+    }else{
+      conn = peer.connect(data);
+    }
  
  conn.on('open', function(){
-  alert("connected to "+sq);
+  alert("connected to "+data);
   loc2=randloc();
   conn.send(loc2);
   run();
@@ -302,9 +360,10 @@ if (multi=="send"){
   alert("Player: Please enter hosts's id");
   var pid;
   var sq="";
+  
    peer = new Peer(); 
   peer.on('open', function(id) {
-      //alert('My peer ID is: ' + id);
+      alert('My peer ID is: ' + id);
       pid=id;
   });
 
@@ -358,6 +417,7 @@ if(data[3]==true){
     marker.setIcon('https://maps.google.com/mapfiles/ms/icons/blue-dot.png');
   }
 }
+
   else{
 
        loc2=data;
@@ -393,7 +453,6 @@ else{
   run();
 }
 $(".menubutton").click(function() {
- // alert($( '#sidemenu' ).css('left'));
   if($( '#sidemenu' ).css('left') == '-305px'){
     $( '#sidemenu' ).css('left','0');
    // $( '#sidemenu' ).removeClass("sidemenu");
@@ -412,7 +471,26 @@ $("#dim").click(function() {
   });
 
 $(".reload").click(function() {
+  if(shareid!=null){
+    window.location="https://vna818.github.io/location_guessr/";
+  }else{
     window.location.reload();
+  }
+  
   });
+
+$("#shrbtn").click(function() {
+  alert("Link copied to clipboard!");
+  const body = document.querySelector('body');
+  const area = document.createElement('textarea');
+  body.appendChild(area);
+
+  area.value = "My guess was "+mydist.toFixed(2)+" off on this location, see if you can beat me! http://localhost/geotest/?shareid="+shrchoice;
+  area.select();
+  document.execCommand('copy');
+
+  body.removeChild(area);
+  });
+
 
 });
