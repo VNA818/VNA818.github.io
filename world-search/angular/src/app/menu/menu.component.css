@@ -1,0 +1,22 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    width: 225px;
+    height: 100%;
+}
+
+#menuH {
+    color: var(--primary-color);
+    font-weight: bold;
+    font-size: 1.3em;
+}
+
+#cr {
+    margin-top: auto;
+    text-align: center;
+}
+
+button {
+    padding: 10px 0 10px 0;
+}
