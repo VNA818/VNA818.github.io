@@ -1,0 +1,24 @@
+<div id="action-bar" class="action-bar" [style.max-width]="width">
+	<button mat-icon-button color="primary" id="collapse" title="Collapse menu" (click)="collapse()">
+		<mat-icon id="collapse" *ngIf="width == '100%'; else uncollapse">last_page</mat-icon>
+		<ng-template #uncollapse>
+			<mat-icon>first_page</mat-icon>
+		</ng-template>
+	</button>
+	<div id="action-bar-content" class="action-bar" [className]="width == '100%' ? 'action-bar' : 'action-bar collapse2'">
+		<button mat-flat-button color="primary" id="guess" title="" (click)="guess()" [disabled]="guessDisable">Guess!</button>
+		<button mat-flat-button color="primary" id="new-location" color="accent" (click)="newLocation()">New Location</button>
+		<button mat-flat-button color="primary" id="rth" title="Return to starting location" color="accent" (click)="rth()">
+			<mat-icon>flag</mat-icon>
+		</button>
+		<button mat-flat-button color="primary" id="share" title="Share Result" (click)="share()" color="accent" [disabled]="shareDisable">
+			<mat-icon>share</mat-icon>
+		</button>
+		<span [className]="width == '100%' ? '' : 'collapse'">
+			<h2 id="score" title="{{(distance * 1.609344).toFixed(2)}} Kilometers" *ngIf="distance != -1">
+				{{distance.toFixed(2) + ' miles away!'}}
+				<!--Your guess was: 6720.66 miles off!-->
+			</h2>
+		</span>
+	</div>
+</div>

@@ -1,0 +1,14 @@
+#history {
+	margin-left: auto;
+}
+
+::ng-deep .mat-toolbar {
+    background-color: #222222 !important; 
+}
+
+::ng-deep #logo {
+	color: var(--primary-color);
+	font-family: segoe ui;
+	font-weight: bold;
+	font-size: 1.3em;
+}

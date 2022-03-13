@@ -1,0 +1,23 @@
+<div id="history" class="container">
+	<div class="container" *ngIf="data.length > 0; else noHistory">
+		<mat-toolbar>
+			<h2 id="historyH">Today's History</h2>
+		</mat-toolbar>
+  		<button mat-button title="View" (click)="historyClick(history.id)" *ngFor="let x of data; let i = index;" >
+    		<div class="container" id={{i}} #history>
+    			<span class="time"><p>#{{i + 1}}</p><p>{{x.time[0] + ' : ' + ("0" + x.time[1]).slice(-2)}}</p></span>
+  				<p>Target: <b>{{x.target[0].toFixed(2) + ', ' + x.target[1].toFixed(2)}}</b></p>
+				<p>Guess: <b>{{x.guess[0].toFixed(2) + ', ' + x.guess[1].toFixed(2)}}</b></p>	
+  				<p class="miles" title="{{(x.distance * 1.609344).toFixed(2)}} Kilometers"><b>{{x.distance.toFixed(2)}} Miles away!</b></p>		
+    		</div>
+    		<mat-divider></mat-divider>
+  		</button>
+  	</div>
+  	<ng-template #noHistory>
+  		<div class="container">
+	  		<mat-toolbar>
+	  			<h2 id="historyH">No History</h2>
+	  		</mat-toolbar>
+  		</div>
+  	</ng-template>
+</div>
