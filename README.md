@@ -2,6 +2,7 @@
 VNA818's github website
 <br>
 <h2>Projects:</h2>
-<ul>
-<li><a href="https://vna818.github.io/world-search">https://vna818.github.io/world-search</a></li>
-</ul>
+<h3>World Search</h3>
+&emsp;- <a href="https://vna818.github.io/world-search">Website</a>
+<br>&emsp;- <a href="https://github.com/VNA818/world-search">Repo</a>
+
