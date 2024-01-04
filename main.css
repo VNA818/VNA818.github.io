@@ -50,7 +50,8 @@ body,
   background: #555;
 }
 
-div {
+div,
+pre {
   box-sizing: border-box;
 }
 
