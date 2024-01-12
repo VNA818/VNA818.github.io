@@ -104,7 +104,7 @@ button {
   transition: border-radius 0.25s ease;
 }
 
-@media (hover: hover) {
+@media (pointer: fine) {
   #cursor {
     display: block;
   }
@@ -367,6 +367,12 @@ nav ul li:nth-of-type(6) {
   align-items: flex-start;
 }
 
+#about a::after {
+  color: white;
+  right: -0.35rem;
+  top: -0.25rem;
+}
+
 @keyframes fadeIn {
   0% {
     opacity: 0;
@@ -400,5 +406,12 @@ nav ul li:nth-of-type(6) {
   }
   100% {
     transform: scaleY(0);
+  }
+}
+
+@media (prefers-reduced-motion) {
+  body * {
+    transition-duration: 0s !important;
+    animation-duration: 0ms !important;
   }
 }
