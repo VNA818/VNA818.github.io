@@ -90,6 +90,7 @@ button {
 
 #cursor {
   display: none;
+  opacity: 0%;
   position: fixed;
   z-index: 9999;
   outline-offset: 3px;
@@ -101,13 +102,29 @@ button {
   border-radius: 100%;
   filter: invert(1);
   mix-blend-mode: difference;
-  transition: border-radius 0.25s ease;
+  transition: border-radius 0.25s ease, opacity 0.25s ease;
 }
 
 @media (pointer: fine) {
   #cursor {
     display: block;
   }
+}
+
+#consolePrompt {
+  position: fixed;
+  top: 0;
+  left: 0;
+  color: #00ff00;
+  font-size: 1.8rem;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  padding: 0.5rem;
+}
+
+#consolePrompt .blink {
+  font-weight: bold;
+  animation: 0.75s fadeOut ease;
+  animation-iteration-count: infinite;
 }
 
 .bg {
