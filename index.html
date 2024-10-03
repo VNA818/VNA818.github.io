@@ -1,19 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="./index.js" type="module"></script>
+    <title>VNA818 dot com</title>
+    <script src="./main.js" type="module"></script>
     <link href="./main.css" rel="stylesheet">
     <link href="./mobile.css" rel="stylesheet">
-    <title>VNA818 dot com</title>
+    <script>
+      window.onerror = () => {
+        document.getElementById("consolePrompt").prepend(document.createTextNode("> Error Loading Website"));
+      }
+    </script>
   </head>
   <body id="body">
     <div id="cursor"></div>
-    <span id="consolePrompt">
-      <noscript> > Please enable JavaScript to view this website properly. <br></noscript>
-      > <span class="blink">|</span>
-    </span>
+    <div id="consolePrompt">
+      <noscript> > Please enable JavaScript to view this website properly</noscript>
+      <div>
+        > <span class="blink">|</span>
+      </div>
+    </div>
     <div class="stats">
       <h2>Server Information</h2>
       <pre>
@@ -51,16 +57,18 @@
           404 Not Found
         </div>
         <div class="page" id="projects">
-          <div class="projectOverlay">
-            <div class="overlayContent"></div>
-          </div>
           <h2>📂 Projects</h2>
-          <div class="projectsGrid"></div>
+          <div id="projectsGrid" class="projectsGrid"></div>
+        </div>
+        <div class="page" id="photos">
+          <h2>📷 Photos</h2>
+          <div id="photosGrid" class="projectsGrid"></div>
         </div>
         <div class="page" id="about">
           <h2>👋 Hello!</h2>
           <p>
-            I am a Senior pursuing a Bachelor's degree in Information Technology and Web Science with a concentration in Web Technologies at Rensselaer Polytechnic Institute.
+            I am a Associate Software Engineer at Lightriver. Here I am developing using Typescript, VUE 3, Fastify, PostgrSQL, and Docker.
+            I graduated with a Bachelors degree of science from Rensselaer Polytechnic Institute in 2024 with a major in Information Technology and Web Science and a concentration in Web Technologies.
             I specialize in front end development and am most proficient in Javascript specifically modern web frameworks such as React.
           </p>
           <p>In my free time I enjoy cycling, graphic design, photography, and games.</p>
@@ -94,17 +102,21 @@
             <li>MongoDB</li>
             </ul>
             </li>
-            </ul>            
+            <li>Design<ul>
+            <li>Photoshop</li>
+            <li>Figma</li>
+            </ul>
+          </ul>         
           <h2>❓ FAQ</h2>
           <p>
             <b>What was this website made using?</b>
             <br>
-            This website is created with plain HTML/CSS/JS and bundled with This website is created with plain HTML/CSS/JS and bundled with <a target="__blank" href="https://rollupjs.org/">Rollup</a>.
+            This website is created with plain HTML/CSS/JS and bundled with <a href="https://rollupjs.org/">Rollup</a>.
           </p>
         </div>
         <div class="page" id="visits">
           <div title="Visit Count">
-              <img id="views" src="https://count.getloli.com/get/@vna818-ps-a12c171b-26ec-400e-a54e-c94094972188?theme=moebooru" alt="Visit Count">
+              <img id="views" src="https://count.getloli.com/get/@test?theme=moebooru" alt="Visit Count">
               <b>Visits</b>
           </div>
         </div>
@@ -112,18 +124,22 @@
           <button>Server &#9660;</button>
         </div>
       </div>
-      <nav>
+      <nav id="nav">
         <ul>
           <li><a href="#/home">Home</a></li>
           <li><a href="#/projects">Projects</a></li>
+          <li><a href="#/photos">Photos</a></li>
           <li><a href="#/about">About</a></li>
-          <li><a target="__blank" href="/files/resume.pdf">Resume</a></li>
+          <li><a target="__blank" href="https://github.com/VNA818/VNA818/blob/main/resume.pdf">Resume</a></li>
           <li><a target="__blank" href="https://github.com/VNA818-RPI">Github</a></li>
           <li><a target="__blank" href="https://www.linkedin.com/in/viano-arcery/">LinkedIn</a></li>
         </ul>
         <div class="shadow"></div>
         <span>2023 - Viano Arcery</span>
       </nav>
+    </div>
+    <div id="overlay">
+      <div class="overlayContent"></div>
     </div>
   </body>
 </html>
