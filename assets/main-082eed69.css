@@ -113,6 +113,12 @@ button {
   }
 }
 
+#notFound {
+  h1 {
+    font-size: 75px;
+  }
+}
+
 #consolePrompt {
   position: fixed;
   top: 0;
