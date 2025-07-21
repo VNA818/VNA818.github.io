@@ -247,6 +247,7 @@ button {
   color: white;
   overflow-y: auto;
   padding: 1rem;
+  padding-bottom: 0;
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
